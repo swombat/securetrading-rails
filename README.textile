@@ -43,19 +43,19 @@ response = Ecommerce::Merchants::SecureTrading::Subscription.authorise billing, 
 
 *Create a new transaction*:
 
-<code>Ecommerce::Merchants::SecureTrading.create(customer_info, card, order, amount, settlement_day = 1)</code>
+<code>Ecommerce::Merchants::SecureTrading::Payment.create(customer_info, card, order, amount, settlement_day = 1)</code>
 
 *Schedule a repeat payment* that uses continuous auth:
 
-<code>Ecommerce::Merchants::SecureTrading.repeat(customer_xml, order_object, amount)</code>
+<code>Ecommerce::Merchants::SecureTrading::Payment.repeat(customer_xml, order_object, amount)</code>
 
 *Reverse authorisation* (allow the customer to cancel an order before payment is authorised):
 
-<code>Ecommerce::Merchants::SecureTrading.auth_reversal(customer_xml, order, amount)</code>
+<code>Ecommerce::Merchants::SecureTrading::Payment.auth_reversal(customer_xml, order, amount)</code>
 
 *Check the status of settlement*:
 
-<code>Ecommerce::Merchants::SecureTrading.settlement_query</code>
+<code>Ecommerce::Merchants::SecureTrading::Payment.settlement_query</code>
 
 Returns: Error, Declined, Pending, Settled
 
