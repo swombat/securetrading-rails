@@ -34,11 +34,7 @@ module Ecommerce::Merchants::SecureTrading
         elsif declined?
           'The transaction was declined by the card issuer.'
         else
-          begin
-            translate_error @xml.root.get_elements('Response/OperationResponse/Message').first.text
-          rescue Exception
-            Notifier.deliver_error_email("An error occurred processing a transaction:\n\n#{@xml.to_s}")
-          end
+          translate_error @xml.root.get_elements('Response/OperationResponse/Message').first.text
         end
       end
       
