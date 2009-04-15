@@ -10,36 +10,15 @@ module Ecommerce
   
   module Cards
     class InvalidCard < Exception ; end
+    CARD_TYPES = {
+      "Visa"          => "VISA",
+      "Mastercard"    => "MasterCard",
+      "Maestro"       => "Switch",
+      "Solo"          => "Solo",
+      "Delta"         => "Delta"
+    }
   end
-  
-  module Merchants
-    class MerchantResponse
-      attr_accessor :transaction, :success, :declined, :customer_details, :transaction_reference
-
-      def success? ; @success == true ; end
-      def declined? ; @declined == true ; end
-      
-      # Transaction is a copy of the transaction data.  This could be used later
-      # with another instance of a merchant.  For example, repeat payment processing
-      # might use this data.
-      #
-      # Customer details is XML that can be used by repeat payments
-      #
-      # Success determines of the transaction was successful.
-      #
-      # Text is the human readable text detailing the response.
-      #
-      def initialize(options = {})
-        @transaction = options[:transaction]
-        @success = options[:success]
-        @declined = options[:declined]
-        @text = options[:text]
-        @customer_details = options[:customer_details]
-        @transaction_reference = options[:transaction_reference]
-      end
-    end
-  end
-  
+    
   # Use this for objects to work in forms.  include it, then provide an
   # attributes method that returns the object's attribute hash, and a
   # validate array.

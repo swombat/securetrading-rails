@@ -15,9 +15,7 @@ module Ecommerce::Merchants::SecureTrading
     
         retries = 0
         begin
-          response = xpay.send 'AUTH', [operation, customer_info, card, order]
-      
-          Ecommerce::Merchants::MerchantResponse.new response.to_xml, customer_info.to_xml, response.success?, response.declined?, response.to_s
+          xpay.send 'AUTH', [operation, customer_info, card, order]
         rescue Ecommerce::MerchantConnectionError
           retries += 1
           retry if retries < 3
@@ -35,8 +33,7 @@ module Ecommerce::Merchants::SecureTrading
 
       retries = 0
       begin
-        response = xpay.send 'CONTINUOUSAUTH', [operation, customer_xml, card, order]
-        Ecommerce::Merchants::MerchantResponse.new response.to_xml, customer_xml, response.success?, response.declined?, response.to_s
+        xpay.send 'CONTINUOUSAUTH', [operation, customer_xml, card, order]
       rescue Ecommerce::MerchantConnectionError
         retries += 1
         retry if retries < 3
@@ -53,8 +50,7 @@ module Ecommerce::Merchants::SecureTrading
 
       retries = 0
       begin
-        response = xpay.send 'AUTHREVERSAL', [operation, customer_xml, card, order]
-        Ecommerce::Merchants::MerchantResponse.new response.to_xml, customer_xml, response.success?, response.to_s
+        xpay.send 'AUTHREVERSAL', [operation, customer_xml, card, order]
       rescue Ecommerce::MerchantConnectionError
         retries += 1
         retry if retries < 3
