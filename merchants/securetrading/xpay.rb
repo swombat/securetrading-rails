@@ -92,7 +92,7 @@ module Ecommerce
         private
           # Connect to the XPay daemon
           def connect!
-            TCPsocket.open 'localhost', 5000
+            TCPsocket.open 'localhost', Ecommerce::Merchants::SecureTrading::Settings.port
           rescue Errno::ECONNREFUSED
             raise Ecommerce::MerchantConnectionError
           end
