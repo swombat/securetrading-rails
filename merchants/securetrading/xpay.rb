@@ -101,7 +101,7 @@ module Ecommerce
             x = Builder::XmlMarkup.new :indent => 2
             blocks.compact!
 
-            x.RequestBlock('Version' => API_VERSION, 'Live' => 'TRUE') do
+            x.RequestBlock('Version' => API_VERSION) do
               x.Request('Type' => request_type) do |request|
                 blocks.each do |block|
                   RAILS_DEFAULT_LOGGER.debug "encoding #{block.inspect}"
